@@ -1,6 +1,7 @@
 package com.smartfinder.printermanager.data.datasourceImpl
 
 import android.content.Context
+import com.bumptech.glide.Glide
 import com.epson.epos2.Epos2Exception
 import com.epson.epos2.printer.Printer
 import com.epson.epos2.printer.PrinterStatusInfo
@@ -9,7 +10,6 @@ import com.smartfinder.printermanager.utils.EpsonErrorMsg
 import com.smartfinder.printermanager.utils.EpsonModel
 import com.smartfinder.printermanager.utils.EpsonSeries
 import com.smartfinder.printermanager.utils.ExternalPrinterUtils
-import com.squareup.picasso.Picasso
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.CompletableEmitter
 
@@ -38,7 +38,7 @@ class EpsonDatasourceImpl : EpsonDatasource {
 //                val pathDemo =
 //                    "https://gsastorages.blob.core.windows.net/gsa/upload/260/print/history-closeshift/638273421314103555.png"
 
-                val bitmap = Picasso.get().load(pathDemo).get()
+                val bitmap = Glide.with(context).asBitmap().load(pathDemo).submit().get()
                 val bitmap1 = ExternalPrinterUtils.resizeBitmap(bitmap, scale)
 
                 printer?.addImage(

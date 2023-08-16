@@ -1,18 +1,18 @@
 package com.smartfinder.newland.data.datasourceImpl
 
+import android.content.Context
 import android.graphics.Bitmap
-import androidx.core.util.Pair
+import com.bumptech.glide.Glide
 import com.newland.sdk.ModuleManage
 import com.newland.sdk.module.printer.ErrorCode
 import com.newland.sdk.module.printer.PrintListener
 import com.newland.sdk.module.printer.PrinterStatus
 import com.smartfinder.newland.data.datasource.PrinterDatasource
-import com.squareup.picasso.Picasso
 import io.reactivex.rxjava3.core.Completable
-import io.reactivex.rxjava3.core.Single
 import kotlin.math.roundToInt
 
 class PrinterDatasourceImpl(
+    private val context: Context,
     private val newlandSdk: ModuleManage?
 ) : PrinterDatasource {
     override fun print(scale: Int, path: String): Completable {
@@ -23,7 +23,7 @@ class PrinterDatasourceImpl(
             try {
                 val pathDemo =
                     "https://gsastorages.blob.core.windows.net/gsa/upload/260/print/viewcheck/638267540499205517.png"
-                val bitmap = Picasso.get().load(pathDemo).get()
+                val bitmap = Glide.with(context).asBitmap().load(pathDemo).submit().get()
                 val printer = newlandSdk!!.printerModule
                 if (printer.status == PrinterStatus.NORMAL) {
                     val script = StringBuffer()

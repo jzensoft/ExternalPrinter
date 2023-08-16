@@ -36,5 +36,5 @@ class NEXGOSdkManager {
     fun getSN() = SNRepositoryImpl(SNDatasourceImpl(nexgoSdk)).getData()
     fun getNFC() = NFCRepositoryImpl(NFCDatasourceImpl(nexgoSdk)).getData()
     fun print(scale: Int, path: String) =
-        PrinterRepositoryImpl(PrinterDatasourceImpl(nexgoSdk)).print(scale, path)
+        PrinterRepositoryImpl(PrinterDatasourceImpl(context, nexgoSdk)).print(scale, path)
 }

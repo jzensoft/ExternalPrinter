@@ -1,0 +1,2 @@
+com.nexgo.smartpos
+string app_name

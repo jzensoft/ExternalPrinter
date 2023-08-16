@@ -1,14 +1,12 @@
 package com.smartfinder.printermanager.data.datasourceImpl
 
 import android.content.Context
-import androidx.core.util.Pair
+import com.bumptech.glide.Glide
 import com.dantsu.escposprinter.EscPosPrinterCommands
 import com.dantsu.escposprinter.connection.tcp.TcpConnection
 import com.smartfinder.printermanager.data.datasource.ESCPOSDatasource
 import com.smartfinder.printermanager.utils.ExternalPrinterUtils
-import com.squareup.picasso.Picasso
 import io.reactivex.rxjava3.core.Completable
-import io.reactivex.rxjava3.core.Single
 
 class ESCPOSDatasourceImpl : ESCPOSDatasource {
     override fun print(
@@ -26,7 +24,7 @@ class ESCPOSDatasourceImpl : ESCPOSDatasource {
                     val pathDemo =
                         "https://gsastorages.blob.core.windows.net/gsa/upload/260/print/viewcheck/638267540499205517.png"
 
-                    val bitmap = Picasso.get().load(pathDemo).get()
+                    val bitmap = Glide.with(context).asBitmap().load(pathDemo).submit().get()
                     val bitmap1 = ExternalPrinterUtils.convertBitmapToGrayscale(bitmap)
 
                     val printerCommand = EscPosPrinterCommands(tcpConnect)

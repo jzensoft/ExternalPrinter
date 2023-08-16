@@ -11,6 +11,8 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/NexGo" />
+            <option value="$PROJECT_DIR$/NexGo/NexGoSDK" />
             <option value="$PROJECT_DIR$/PrinterManager" />
             <option value="$PROJECT_DIR$/app" />
           </set>

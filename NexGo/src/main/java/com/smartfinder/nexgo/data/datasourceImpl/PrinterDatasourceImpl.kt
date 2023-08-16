@@ -1,14 +1,15 @@
 package com.smartfinder.nexgo.data.datasourceImpl
 
-import androidx.core.util.Pair
+import android.content.Context
+import com.bumptech.glide.Glide
 import com.nexgo.oaf.apiv3.DeviceEngine
 import com.nexgo.oaf.apiv3.SdkResult
 import com.nexgo.oaf.apiv3.device.printer.AlignEnum
 import com.smartfinder.nexgo.data.datasource.PrinterDatasource
-import com.squareup.picasso.Picasso
 import io.reactivex.rxjava3.core.Completable
 
 class PrinterDatasourceImpl(
+    private val context: Context,
     private val deviceEngine: DeviceEngine?
 ) : PrinterDatasource {
     override fun print(scale: Int, path: String): Completable {
@@ -23,7 +24,7 @@ class PrinterDatasourceImpl(
                     SdkResult.Success -> {
                         val pathDemo =
                             "https://gsastorages.blob.core.windows.net/gsa/upload/260/print/viewcheck/638267540499205517.png"
-                        val bitmap = Picasso.get().load(pathDemo).get()
+                        val bitmap = Glide.with(context).asBitmap().load(pathDemo).submit().get()
                         printer.appendImage(bitmap, AlignEnum.CENTER)
                         printer.startPrint(true) { result ->
                             when (result) {

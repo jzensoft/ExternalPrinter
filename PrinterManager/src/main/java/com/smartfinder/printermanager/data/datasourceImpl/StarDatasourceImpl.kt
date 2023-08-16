@@ -1,16 +1,14 @@
 package com.smartfinder.printermanager.data.datasourceImpl
 
 import android.content.Context
-import androidx.core.util.Pair
+import com.bumptech.glide.Glide
 import com.smartfinder.printermanager.data.datasource.StarDatasource
 import com.smartfinder.printermanager.utils.ExternalPrinterUtils
-import com.squareup.picasso.Picasso
 import com.starmicronics.stario.StarIOPort
 import com.starmicronics.stario.StarIOPortException
 import com.starmicronics.starioextension.ICommandBuilder
 import com.starmicronics.starioextension.StarIoExt
 import io.reactivex.rxjava3.core.Completable
-import io.reactivex.rxjava3.core.Single
 
 class StarDatasourceImpl : StarDatasource {
     private var port: StarIOPort? = null
@@ -31,7 +29,7 @@ class StarDatasourceImpl : StarDatasource {
                     val pathDemo =
                         "https://gsastorages.blob.core.windows.net/gsa/upload/260/print/viewcheck/638267540499205517.png"
 
-                    val bitmap = Picasso.get().load(pathDemo).get()
+                    val bitmap = Glide.with(context).asBitmap().load(pathDemo).submit().get()
                     val bitmap1 = ExternalPrinterUtils.resizeBitmap(bitmap, scale)
 
                     val builder = StarIoExt.createCommandBuilder(StarIoExt.Emulation.StarDotImpact)

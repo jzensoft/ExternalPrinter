@@ -1,13 +1,11 @@
 package com.smartfinder.pax.data.datasourceImpl
 
 import android.content.Context
-import androidx.core.util.Pair
+import com.bumptech.glide.Glide
 import com.pax.dal.IDAL
 import com.pax.dal.exceptions.PrinterDevException
 import com.smartfinder.pax.data.datasource.PrinterDatasource
-import com.squareup.picasso.Picasso
 import io.reactivex.rxjava3.core.Completable
-import io.reactivex.rxjava3.core.Single
 
 class PrinterDatasourceImpl(
     private val context: Context,
@@ -21,7 +19,7 @@ class PrinterDatasourceImpl(
             try {
                 val pathDemo =
                     "https://gsastorages.blob.core.windows.net/gsa/upload/260/print/viewcheck/638267540499205517.png"
-                val bitmap = Picasso.get().load(pathDemo).get()
+                val bitmap = Glide.with(context).asBitmap().load(pathDemo).submit().get()
                 val printer = dal!!.printer
                 printer.init()
                 printer.invert(true)

@@ -40,5 +40,5 @@ class NewlandSDKManager {
     fun getSN() = SNRepositoryImpl(SNDatasourceImpl(newlandSdk)).getData()
     fun getNFC() = NFCRepositoryImpl(NFCDatasourceImpl(newlandSdk)).getData()
     fun print(scale: Int, path: String) =
-        PrinterRepositoryImpl(PrinterDatasourceImpl(newlandSdk)).print(scale, path)
+        PrinterRepositoryImpl(PrinterDatasourceImpl(context, newlandSdk)).print(scale, path)
 }
